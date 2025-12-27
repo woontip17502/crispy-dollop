@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy New Year 2026 </title>
+    <title>Happy New Year 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Pattaya&display=swap"
         rel="stylesheet">
@@ -318,9 +318,9 @@
     <canvas id="canvas"></canvas>
 
     <div class="glass-card">
-        <h2 class="text-pink-300 text-2xl tracking-wide mb-0">Goodbye 2025</h2>
+        <h2 class="text-pink-300 font-medium tracking-wide mb-0">Goodbye 2025</h2>
         <div class="year-text">2026</div>
-        <h1 class="text-2xl font-bold text-white mb-6">ปีใหม่นี้ขอให้ใจดีกับอ้วน</h1>
+        <h1 class="text-2xl font-bold text-white mb-6">ปีใหม่นี้ขอให้ใจดีกับคุณ</h1>
         <button id="celebrateBtn" class="btn-celebrate">กดรับพรปีใหม่</button>
         <div class="mt-8 text-pink-300 text-l">ของขวัญสําหรับคนพิเศษ</div>
     </div>
@@ -330,8 +330,7 @@
             <div class="close-btn" onclick="closeModal()">✕</div>
 
             <div class="photo-slideshow" id="slideshow">
-                <img src="https://lh3.googleusercontent.com/u/0/d/19g5W48oZUzUI_JyWaEkZghWYOVLOKO6Q"
-                    class="slide active">
+                <img src="https://lh3.googleusercontent.com/u/0/d/19g5W48oZUzUI_JyWaEkZghWYOVLOKO6Q" class="slide active">
                 <img src="https://lh3.googleusercontent.com/u/0/d/1hO3dN6WZmoBQkhtmQXyp9aBaPsKtIkN1" class="slide">
                 <img src="https://lh3.googleusercontent.com/u/0/d/1WJw_VDvOE-8BPaXW1rEqaKTxS1Jj8QBI" class="slide">
                 <img src="https://lh3.googleusercontent.com/u/0/d/13-HqXOCl4xvtQOPPaJCBplZ9YsKFsXre" class="slide">
@@ -351,7 +350,7 @@
 
                 <div class="music-player w-full max-w-[340px]">
                     <img src="https://lh3.googleusercontent.com/u/0/d/1wKMvJRFCggeDsBtqXlvGA96vrNcbQhNq" id="musicArt"
-                        class="album-art" alt="Album Art">
+                        id="musicArt" class="album-art" alt="Album Art">
                     <div class="song-info">
                         <div class="cute-message">เพลงนี้มอบให้อ้วนคนเดียวเลยนะ</div>
                         <div class="marquee-outer">
@@ -384,11 +383,8 @@
         </div>
     </div>
 
-    <!-- หากคุณต้องการเปลี่ยนเพลง ให้เปลี่ยน URL ใน source src ด้านล่างนี้ครับ -->
     <audio id="bgMusic" loop preload="auto">
-        <source
-            src="https://res.cloudinary.com/dpqfrvys8/video/upload/v1766818004/-_Boydpod___First_Anuwat_Cover_vqzlfz.mp3"
-            type="audio/mpeg">
+        <source src="https://res.cloudinary.com/dpqfrvys8/video/upload/v1766818004/-_Boydpod___First_Anuwat_Cover_vqzlfz.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -414,8 +410,8 @@
         let slideInterval, fireworkInterval;
         let isTyping = false;
 
-        const wishes = ["ก้าวเข้าสู่ปีใหม่ด้วยหัวใจที่พองโต...ขอให้ปีนี้ใจดีกับอ้วนเป็นพิเศษ มีสุขภาพที่แข็งแรง มีพลังกายพลังใจเต็มเปี่ยมเพื่อไปคว้าทุกความฝันที่อ้วนต้องการ และขอให้โลกใบนี้โอบกอดอ้วนไว้ด้วยความอบอุ่นเสมอ"];
-        const loveMessage = "อยากบอกว่ารักอ้วนที่สุดเลยนะ จะอยู่เป็นรอยยิ้มให้กันแบบนี้ในทุกๆ ปีตลอดไปเลยนะ";
+        const wishes = ["ก้าวเข้าสู่ปีใหม่ด้วยหัวใจที่พองโต...ขอให้ปีนี้ใจดีกับอ้วนเป็นพิเศษ มีสุขภาพที่แข็งแรง มีพลังกายพลังใจเต็มเปี่ยมเพื่อไปคว้าทุกความฝันที่อ้วนต้องการ และขอให้โลกใบนี้โอบกอดคุณไว้ด้วยความอบอุ่นเสมอ"];
+        const loveMessage = "อยากบอกว่ารักอ้วนที่สุดเลยนะ จะอยู่เป็นรอยยิ้มให้กันแบบนี้ในทุกๆ ปีตลอดไปเลยนะ ❤️";
 
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize);
@@ -491,10 +487,16 @@
             }
         }
 
-        // เมื่อเริ่มโหลดข้อมูลเพลงได้
-        audio.onloadedmetadata = () => {
-            durationEl.innerText = formatTime(audio.duration);
+        // ปรับปรุงการโหลดเวลาเริ่มต้น
+        const updateInitialDuration = () => {
+            if (audio.duration && isFinite(audio.duration)) {
+                durationEl.innerText = "-" + formatTime(audio.duration);
+            }
         };
+
+        audio.addEventListener('loadeddata', updateInitialDuration);
+        audio.addEventListener('durationchange', updateInitialDuration);
+        audio.addEventListener('canplaythrough', updateInitialDuration);
 
         audio.ontimeupdate = () => {
             if (audio.duration && isFinite(audio.duration)) {
@@ -502,7 +504,7 @@
                 progressBar.style.width = progress + "%";
                 currentTimeEl.innerText = formatTime(audio.currentTime);
 
-                // แก้ไข: แสดงเวลาที่เหลืออยู่ (Duration - CurrentTime)
+                // คำนวณเวลาถอยหลัง (เวลาที่เหลือ)
                 const timeLeft = audio.duration - audio.currentTime;
                 durationEl.innerText = "-" + formatTime(timeLeft);
             } else {
@@ -515,6 +517,8 @@
             if (isTyping) return;
             isTyping = true;
 
+            // พยายามโหลด metadata อีกครั้งเมื่อเปิด modal
+            audio.load();
             audio.play().catch(() => console.log("User must interact first"));
             playIcon.classList.add('hidden');
             pauseIcon.classList.remove('hidden');
@@ -538,7 +542,7 @@
                     fireworks.push(new Firework(Math.random() * canvas.width, Math.random() * canvas.height * 0.8));
                 }, 600);
 
-                await typeWriter(blessingText, wishes[0], 80);
+                await typeWriter(blessingText, wishes[0], 70);
                 loveCursor.classList.remove('hidden');
                 await typeWriter(loveText, loveMessage, 95);
                 loveCursor.classList.add('hidden');
